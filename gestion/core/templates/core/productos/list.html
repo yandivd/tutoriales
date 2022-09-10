@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card card-default">
+    <div class="card-header px-3 mb-3 mt-3 container">
+    <h3 class="card-title">
+    <i class="fas fa-exclamation-triangle bi bi-search"></i>
+        {{title}}
+    </h3>
+    </div>
+    <div class="card card-body content-header mx-5 px-5">
+<table id="prod" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Categoria</th>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>PvP</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+        <tr>
+            <td>{{i.cat}}</td>
+            <td>{{i.nombre}}</td>
+            <td class="text-center">
+                <img src="{{i.get_image}}" alt="" class="img-fluid d-block mx-auto" style="width: 40px; height:40px;">
+            </td>
+            <td>{{i.pvp}}</td>
+            <td>
+                <a href="{% url 'editarPro' i.id %}" type="button" class="btn btn-warning bi bi-pencil-square">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'eliminarPro' i.id %}" type="button" class="btn btn-danger bi bi-trash">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+        </div>
+    <div class="card-footer">
+    <a href="{%url 'crearPro'%}" type="button" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Agregar Registro</a>
+</div>
+
+</div>
+{% endblock %}

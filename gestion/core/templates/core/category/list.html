@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card card-default">
+    <div class="card-header px-3 mb-3 mt-3 container">
+    <h3 class="card-title">
+    <i class="fas fa-exclamation-triangle bi bi-search"></i>
+        {{title}}
+    </h3>
+    </div>  
+    <div class="card card-body content-header mx-5 px-5">
+<table id="example" class="display tab-content table-bordered table-responsive-md table-borderless justify-content-center" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col" style="width: 10%;">Numero</th>
+            <th scope="col" style="width: 20%;">Nombre</th>
+            <th scope="col" style="width: 50%;">Descripcion</th>
+            <th scope="col" style="width: 20%;">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+        </div>
+    <div class="card-footer container">
+    <a href="{{create_url}}"><button type="button" class="btn btn-primary btnTest" id="btnTest"><i class="bi bi-plus-circle"></i> Agregar Registro</button></a>
+</div>
+
+</div>
+
+{% endblock %}

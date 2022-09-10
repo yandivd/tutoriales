@@ -1,0 +1,4 @@
+Django~=3.2.8
+Pillow==8.0.1
+django-admin-interface
+django-crispy-forms==1.8.1
