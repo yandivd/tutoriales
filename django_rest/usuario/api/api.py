@@ -19,4 +19,8 @@ def user_api_view(request):
         
         return Response(usuarios_serializer.data)
     elif request.method == 'POST':
-        print(request.data)
+        usuario_serializer = UsuarioSerializer(data=request.data)
+        if usuario_serializer.is_valid():
+            usuario_serializer.save()
+            return Response(usuario_serializer.data)
+        return Response(usuario_serializer.errors)
