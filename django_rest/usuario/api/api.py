@@ -25,7 +25,7 @@ def user_api_view(request):
             return Response(usuario_serializer.data)
         return Response(usuario_serializer.errors)
 
-@api_view(['GET'])
+@api_view(['GET','PUT','DELETE'])
 def usuario_detail_api_view(request,id):
 
     if request.method == 'GET':
@@ -33,3 +33,15 @@ def usuario_detail_api_view(request,id):
             user=Usuario.objects.get(id=id)
             usuario_serializer = UsuarioSerializer(user)
             return Response(usuario_serializer.data)
+    elif request.method == 'PUT':
+        user=Usuario.objects.get(id=id)
+        usuario_serializer = UsuarioSerializer(user, data=request.data)
+        if usuario_serializer.is_valid():
+            usuario_serializer.save()
+            return Response(usuario_serializer.data)
+        else:
+            return Response(usuario_serializer.errors)
+    elif request.method == 'DELETE':
+        user=Usuario.objects.get(id=id)
+        user.delete()
+        return Response('Eliminado')
