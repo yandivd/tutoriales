@@ -24,3 +24,12 @@ def user_api_view(request):
             usuario_serializer.save()
             return Response(usuario_serializer.data)
         return Response(usuario_serializer.errors)
+
+@api_view(['GET'])
+def usuario_detail_api_view(request,id):
+
+    if request.method == 'GET':
+        if id is not None:
+            user=Usuario.objects.get(id=id)
+            usuario_serializer = UsuarioSerializer(user)
+            return Response(usuario_serializer.data)
