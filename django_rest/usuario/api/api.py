@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from usuario.models import Usuario
-from usuario.api.serializer import UsuarioSerializer
+from usuario.api.serializer import UsuarioSerializer, TestUsuarioSerializer
 
 # class UsuarioAPIView(APIView):
 #     def get(self, request):
@@ -20,6 +20,14 @@ def user_api_view(request):
         #queryset
         usuarios = Usuario.objects.all()
         usuarios_serializer = UsuarioSerializer(usuarios, many=True)
+
+        test_data = {
+            'name': 'Yandi Vargas',
+            'email': 'yandivd@gmail.com'
+        }
+        test_user = TestUsuarioSerializer(data=test_data)
+        if test_user.is_valid():
+            print('Paso Validaciones')
         return Response(usuarios_serializer.data, status=status.HTTP_200_OK)
 
     #create
