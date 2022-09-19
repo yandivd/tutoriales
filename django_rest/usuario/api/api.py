@@ -21,13 +21,6 @@ def user_api_view(request):
         usuarios = Usuario.objects.all()
         usuarios_serializer = UsuarioSerializer(usuarios, many=True)
 
-        test_data = {
-            'name': 'Yandi Vargas',
-            'email': 'yandivd@gmail.com'
-        }
-        test_user = TestUsuarioSerializer(data=test_data)
-        if test_user.is_valid():
-            print('Paso Validaciones')
         return Response(usuarios_serializer.data, status=status.HTTP_200_OK)
 
     #create
@@ -67,3 +60,16 @@ def usuario_detail_api_view(request,id):
             return Response({'message':'Usuario Eliminado Correctamente!'}, status=status.HTTP_200_OK)
 
     return Response({'message':'No se ha encontnrado un usuario con esos datos'}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def user_test_api_view(request):
+        #listar
+    if request.method == 'GET':
+        test_data = {
+            'name': 'Yandiasd',
+            'email': 'yandaw@gmail.com'
+        }
+        test_user = TestUsuarioSerializer(data=test_data)
+        if test_user.is_valid():
+            print('Paso Validaciones')
+        return Response(test_user.data, status=status.HTTP_200_OK)
