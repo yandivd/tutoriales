@@ -66,10 +66,12 @@ def user_test_api_view(request):
         #listar
     if request.method == 'GET':
         test_data = {
-            'name': 'Yandiasd',
-            'email': 'yandaw@gmail.com'
+            'name': 'yandi',
+            'email': 'yandivd@gmail.com'
         }
-        test_user = TestUsuarioSerializer(data=test_data)
+        test_user = TestUsuarioSerializer(data=test_data, context=test_data)
         if test_user.is_valid():
             print('Paso Validaciones')
+        else:
+            print(test_user.errors)
         return Response(test_user.data, status=status.HTTP_200_OK)

@@ -12,7 +12,7 @@ class TestUsuarioSerializer(serializers.Serializer):
 
     def validate_name(self,value):
         #validar que ningun usuario se llame Yandi
-        if 'Yandi' in value:
+        if 'Yandia' in value:
             print('HAHAAAH')
             raise serializers.ValidationError('Error, ninguna persona se puede llamar asi')
         print(value)
@@ -22,11 +22,13 @@ class TestUsuarioSerializer(serializers.Serializer):
         #validar q el correo no este vacio
         if value == '':
             raise serializers.ValidationError('Error, el correo no puede estar en blanco')
+        if self.validate_name(self.context['name']) in value:
+            raise serializers.ValidationError('El nombre no puede estar contenido en el correo')
         print(value)
         return value
 
     def validate(self, data):
         print('Validate General')
-        if data['name'] in data['email']:
-            raise serializers.ValidationError('Error, el correo no puede contener el nombre')
+        # if data['name'] in data['email']:
+        #     raise serializers.ValidationError('Error, el correo no puede contener el nombre')
         return data
