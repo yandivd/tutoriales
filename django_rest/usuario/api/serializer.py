@@ -22,8 +22,8 @@ class TestUsuarioSerializer(serializers.Serializer):
         #validar q el correo no este vacio
         if value == '':
             raise serializers.ValidationError('Error, el correo no puede estar en blanco')
-        if self.validate_name(self.context['name']) in value:
-            raise serializers.ValidationError('El nombre no puede estar contenido en el correo')
+        # if self.validate_name(self.context['name']) in value:
+        #     raise serializers.ValidationError('El nombre no puede estar contenido en el correo')
         print(value)
         return value
 
@@ -32,3 +32,7 @@ class TestUsuarioSerializer(serializers.Serializer):
         # if data['name'] in data['email']:
         #     raise serializers.ValidationError('Error, el correo no puede contener el nombre')
         return data
+
+    def create(self, validated_data):
+        print(validated_data)
+        return Usuario(**validated_data)

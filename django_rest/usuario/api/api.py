@@ -71,7 +71,7 @@ def user_test_api_view(request):
         }
         test_user = TestUsuarioSerializer(data=test_data, context=test_data)
         if test_user.is_valid():
-            print('Paso Validaciones')
+            test_user.save()
         else:
             print(test_user.errors)
         return Response(test_user.data, status=status.HTTP_200_OK)
